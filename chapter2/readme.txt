@@ -1,0 +1,2 @@
+docker buildx build --output type=docker --load -t my_pytorch_app .
+docker run -it -v $(pwd):/app  my_pytorch_app
