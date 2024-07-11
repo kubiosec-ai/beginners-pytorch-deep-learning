@@ -31,5 +31,5 @@ docker buildx build --push --platform linux/arm64,linux/amd64  -t xxradar/my_pyt
 
 ### 5. Test the image
 ```
-docker run -it -v $(pwd):/app  my_pytorch_app
+docker run -it -v $(pwd):/app  xxradar/my_pytorch_app
 ```
