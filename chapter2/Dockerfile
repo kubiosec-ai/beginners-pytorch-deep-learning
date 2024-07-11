@@ -7,8 +7,9 @@ WORKDIR /app
 # Copy the requirements.txt file into the container at /app
 COPY requirements.txt /app/
 
+RUN /bin/sh -c "pip3 install --upgrade pip"
 # Install the required Python packages
-RUN pip3 install -r /app/requirements.txt
+RUN /bin/sh -c "pip3 install -r /app/requirements.txt"
 
 # Set the default command to run when starting the container
 CMD ["bash"]
