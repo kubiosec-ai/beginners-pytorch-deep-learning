@@ -29,13 +29,7 @@ See https://docs.docker.com/storage/containerd/ for more info
 docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t xxradar/my_py
 ```
 
-
-
-/// Brol to be cleaned
-docker buildx build --output type=docker --load -t my_pytorch_app .
-
-docker buildx build --platform linux/arm64  -t my_pytorch_app .
-docker buildx build --platform linux/amd64  -t my_pytorch_app 
-
-
+### 5. Test the image
+```
 docker run -it -v $(pwd):/app  my_pytorch_app
+```
