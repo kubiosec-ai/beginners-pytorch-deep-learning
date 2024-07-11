@@ -11,7 +11,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 newgrp docker
 ```
-### #3 Enable containerd store
+### 3. Enable containerd store
 Create `/etc/docker/daemon.json`
 ```
 {
@@ -24,7 +24,7 @@ Create `/etc/docker/daemon.json`
 sudo systemctl restart docker
 ```
 See https://docs.docker.com/storage/containerd/ for more info
-### Build the images 
+### 4. Build the images 
 ```
 docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t xxradar/my_py
 ```
