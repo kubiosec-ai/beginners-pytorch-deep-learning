@@ -7,7 +7,9 @@ WORKDIR /app
 # Copy the requirements.txt file into the container at /app
 COPY requirements.txt /app/
 
+# Upgrade pip to latest version
 RUN /bin/sh -c "pip3 install --upgrade pip"
+
 # Install the required Python packages
 RUN /bin/sh -c "pip3 install -r /app/requirements.txt"
 
