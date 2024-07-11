@@ -26,7 +26,7 @@ sudo systemctl restart docker
 See https://docs.docker.com/storage/containerd/ for more info
 ### 4. Build the images 
 ```
-docker buildx build --push --platform linux/arm/v7,linux/arm64/v8,linux/amd64  -t xxradar/my_py
+docker buildx build --push --platform linux/arm64,linux/amd64  -t xxradar/my_py
 ```
 
 ### 5. Test the image
