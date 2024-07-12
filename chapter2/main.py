@@ -24,13 +24,13 @@ img_transforms = transforms.Compose([
     ])
 
 
-train_data_path = "./train/"
+train_data_path = "../data/train/"
 train_data = torchvision.datasets.ImageFolder(root=train_data_path,transform=img_transforms, is_valid_file=check_image)
 
-val_data_path = "./val/"
+val_data_path = "../data/val/"
 val_data = torchvision.datasets.ImageFolder(root=val_data_path,transform=img_transforms, is_valid_file=check_image)
 
-test_data_path = "./test/"
+test_data_path = "../data/test/"
 test_data = torchvision.datasets.ImageFolder(root=test_data_path,transform=img_transforms, is_valid_file=check_image) 
 
 batch_size=64
@@ -106,7 +106,7 @@ train(simplenet, optimizer,torch.nn.CrossEntropyLoss(), train_data_loader,val_da
 # Making predictions
 labels = ['cat','fish']
 
-img = Image.open("./val/cat/33524095_c9573d494e.jpg") 
+img = Image.open("../data/val/cat/33524095_c9573d494e.jpg") 
 img = img_transforms(img).to(device)
 img = torch.unsqueeze(img, 0)
 

@@ -27,7 +27,7 @@ preprocess = transforms.Compose([
 ])
 
 # Load the image
-img_path = "./val/cat/33524095_c9573d494e.jpg"
+img_path = "../data/val/cat/33524095_c9573d494e.jpg"
 img = Image.open(img_path)
 
 # Preprocess the image

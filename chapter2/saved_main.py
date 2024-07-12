@@ -38,13 +38,13 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 simplenet.to(device)
 
 # Load the model state for inference
-simplenet.load_state_dict(torch.load("/tmp/simplenet"))
+simplenet.load_state_dict(torch.load("../model/simplenet"))
 
 # Making predictions
 labels = ['cat', 'fish']
 
 # Load and transform the image
-img = Image.open("./val/cat/33524095_c9573d494e.jpg")
+img = Image.open("../data/val/cat/33524095_c9573d494e.jpg")
 img = img_transforms(img).to(device)
 img = torch.unsqueeze(img, 0)
 
