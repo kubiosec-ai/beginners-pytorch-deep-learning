@@ -1,4 +1,3 @@
-import requests
 import torch
 from flask import Flask, jsonify, request
 from io import BytesIO
@@ -6,6 +5,7 @@ from PIL import Image
 from torchvision import transforms
 
 from catfish_model import CatfishModel, CatfishClasses
+from security import safe_requests
 
 def load_model():
     m = CatfishModel
@@ -35,7 +35,7 @@ def create_app():
         else:
             img_url = request.args.get('image_url', '')
 
-        response = requests.get(img_url)
+        response = safe_requests.get(img_url)
         img = Image.open(BytesIO(response.content))
         img_tensor = img_transforms(img).unsqueeze(0)
         prediction =  model(img_tensor)
