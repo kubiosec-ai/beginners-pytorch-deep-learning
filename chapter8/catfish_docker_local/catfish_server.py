@@ -40,7 +40,7 @@ def create_app():
         else:
             img_url = request.args.get('image_url', '')
 
-        response = requests.get(img_url)
+        response = requests.get(img_url, timeout=60)
         img = Image.open(BytesIO(response.content))
         img_tensor = img_transforms(img).unsqueeze(0)
         prediction =  model(img_tensor)

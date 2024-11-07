@@ -49,7 +49,7 @@ resnet50_top5_prob, resnet50_top5_catid = torch.topk(resnet50_probabilities, 5)
 
 # Load the labels for ImageNet classes
 LABELS_URL = "https://raw.githubusercontent.com/anishathalye/imagenet-simple-labels/master/imagenet-simple-labels.json"
-labels_map = requests.get(LABELS_URL).json()
+labels_map = requests.get(LABELS_URL, timeout=60).json()
 
 # Print the top 5 predictions for AlexNet
 print("AlexNet Predictions:")
