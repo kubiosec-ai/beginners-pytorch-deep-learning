@@ -9,7 +9,7 @@ from torchtext.vocab import build_vocab_from_iterator
 from torch.utils.data import DataLoader, Dataset
 from torch.nn.utils.rnn import pad_sequence
 import googletrans
-import random
+import secrets
 
 # Load spacy model
 spacy_en = spacy.load('en_core_web_sm')
@@ -134,22 +134,18 @@ def classify_tweet(tweet):
     with torch.no_grad():
         output = model(indices)
     return categories[output.argmax().item()]
-
-# Data Augmentation
-import random
-from random import randrange
 from googletrans import Translator
 
 def random_deletion(words, p=0.5):
     if len(words) == 1:
         return words
-    remaining = list(filter(lambda x: random.uniform(0, 1) > p, words))
-    return remaining if remaining else [random.choice(words)]
+    remaining = list(filter(lambda x: secrets.SystemRandom().uniform(0, 1) > p, words))
+    return remaining if remaining else [secrets.choice(words)]
 
 def random_swap(sentence, n=5):
     length = range(len(sentence))
     for _ in range(n):
-        idx1, idx2 = random.sample(length, 2)
+        idx1, idx2 = secrets.SystemRandom().sample(length, 2)
         sentence[idx1], sentence[idx2] = sentence[idx2], sentence[idx1]
     return sentence
 
@@ -157,8 +153,8 @@ def random_swap(sentence, n=5):
 def random_insertion(sentence, n):
     words = remove_stopwords(sentence)
     for _ in range(n):
-        new_synonym = get_synonyms(random.choice(words))
-        sentence.insert(randrange(len(sentence)+1), new_synonym)
+        new_synonym = get_synonyms(secrets.choice(words))
+        sentence.insert(secrets.SystemRandom().randrange(len(sentence)+1), new_synonym)
     return sentence
 
 translator = Translator()
@@ -170,7 +166,7 @@ en_text = [t.text for t in translations_en]
 print(en_text)
 
 available_langs = list(googletrans.LANGUAGES.keys())
-tr_lang = random.choice(available_langs)
+tr_lang = secrets.choice(available_langs)
 print(f"Translating to {googletrans.LANGUAGES[tr_lang]}")
 
 translations = translator.translate(sentences, dest=tr_lang)
